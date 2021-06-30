@@ -38,20 +38,3 @@ def interp(x, xp, fp):
       (xv - xp[low]) * (fp[hi] - fp[low]) / (xp[hi] - xp[low]) + fp[low])
 
   return [get_interp(v) for v in x] if hasattr(x, '__iter__') else get_interp(x)
-
-class NeuralNetwork(nn.Module):
-    def __init__(self):
-        super(NeuralNetwork, self).__init__()
-        self.linear_relu_stack = nn.Sequential(
-            nn.Linear(200+300, 64),
-            nn.ReLU(),
-            nn.Linear(64, 64),
-            nn.ReLU(),
-            nn.Linear(64, 32),
-            nn.ReLU(),
-            nn.Linear(32, 1),
-            nn.Tanh()
-        )
-
-    def forward(self, x):
-        return self.linear_relu_stack(x)
